@@ -6,7 +6,7 @@ dynamodb = resource("dynamodb",
                     aws_secret_access_key=getenv("AWS_SECRET_ACCESS_KEY"),
                     region_name=getenv("REGION_NAME"))
 
-
+# Add Tables
 tables = [
     {
         "TableName": "users",
@@ -16,7 +16,7 @@ tables = [
                 'KeyType': 'HASH'
             },
             {
-                'AttributeName': 'created_at',
+                'AttributeName': 'created_at', # CLASSIFICATION KEY by DATE
                 'KeyType': 'RANGE'
             },
 
@@ -24,7 +24,7 @@ tables = [
         "AttributeDefinitions": [
             {
                 'AttributeName': 'id',
-                'AttributeType': 'S'
+                'AttributeType': 'S' # S:STRING | N:NUMBER | B:BINARY
             },
             {
                 'AttributeName': 'created_at',
@@ -34,7 +34,7 @@ tables = [
     },
 ]
 
-
+# Create tables in dynamodb
 def create_tables():
     print("INIT")
     try:
